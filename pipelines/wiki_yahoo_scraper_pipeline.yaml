@@ -20,7 +20,7 @@ workers:
     description: pulls price data for a specific stock symbol from yahoo finance
     location: workers.YahooFinancePriceWorker
     class: YahooFinancePriceScheduler
-    instances: 4
+    instances: 2
     input_queue: SymbolQueue
     output_queue:
       - PostgresUploading
@@ -29,5 +29,5 @@ workers:
     description: take stock data and save in postgres
     location: workers.PostgresWorker
     class: PostgresMasterScheduler
-    instances: 4
+    instances: 6
     input_queue: PostgresUploading
