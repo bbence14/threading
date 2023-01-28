@@ -36,8 +36,11 @@ class YahooFinancePriceScheduler(threading.Thread):
                 output_values = (val, price, datetime.datetime.utcnow())
                 output_queue.put(output_values)
             print(price)
-            print(self._output_queue)
             time.sleep(random.random())
+
+        for output_queue in self._output_queue:
+            for i in range(20):
+                output_queue.put('DONE')
 
 
 class YahooFinanceWorker:
